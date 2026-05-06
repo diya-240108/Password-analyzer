@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Password Strength Analyzer</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body> 
+    <div class="container">
+        <div class="info">
+            <h1>Welcome to my webpage!</h1>
+            <h3><i>Password Strength Analyzer</i></h3>
+            <br><br>
+            <h3><u>Password requirements</u></h3>
+            <ul>
+                <li>Minimum 8 characters</li>
+                <li>Include uppercase</li>
+                <li>Include numbers</li>
+                <li>Include special characters</li>
+            </ul>
+        </div>
+        <div class="login">
+            <form method="post">
+                <fieldset>
+                    <legend>Login Details</legend>
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username">
+                    <br><br>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password">
+                    <br><br>
+                    <label><input type="checkbox" id="show">Show</label>
+                    <br><br>
+                    <button type="submit">Submit</button>
+                    <br><br>
+                    <p id="result"><b>Password Strength:</b> {{ result }}</p>
+                    {% if suggestions %}
+                    <h4>Suggestions:</h4>
+                    <ul>
+                        {% for s in suggestions %}
+                        <li>{{ s }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    <br><br>
+                </fieldset>       
+            </form>
+        </div>        
+    </div>  
+    <script>
+    const password = document.getElementById("password");
+    const show = document.getElementById("show");
+    show.addEventListener("change", () => {
+        password.type = show.checked ? "text" : "password";
+    });
+    </script>  
+</body>
+</html>
